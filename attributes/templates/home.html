@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>{% block title_content %} Product Missing Attributes {% endblock %}</title>
+{% endblock %}
+
+{% block content %}
+<div class="container border p-5 mt-5 shadow rounded">
+  <h1 class="text-white shadow p-3 rounded" style="background-color: #4169E1; display: flex; justify-content: center; align-items: center;">
+    <span style="flex: 1; text-align: center;">Product Attributes Labelling App</span>
+    <i class="bi bi-toggle2-off mode-icon text-white"></i>
+  </h1>
+  
+  
+  
+  
+    <div class="row mt-4">
+      <div class="col-md-4 mb-3">
+        <label for="family-select" class="form-label">Family</label>
+        <select id="family-select" class="form-select family-select" aria-label="Select Family">
+          <option selected>Select Family</option>
+          {% for family in families %}
+          <option value="{{ family.id }}">{{ family.name }}</option>
+          {% endfor %}      
+        </select>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="category-select" class="form-label">Category</label>
+        <select id="category-select" class="form-select category-select" aria-label="Select Category">
+          <option selected>Select Category</option>
+        </select>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="brand-select" class="form-label">Brand</label>
+        <select id="brand-select" class="form-select brand-select" aria-label="Select Brand">
+          <option selected>Select Brand</option>
+        </select>
+      </div>
+      <div class="col-md-12 text-center">
+        <button id="clear-filters-btn" type="button" class="btn btn-outline-danger btn-sm">
+          <i class="bi bi-filter"></i>
+          Clear filters
+        </button>
+      </div>
+    </div>
+    
+    
+    <div class="container p-3 mt-3">
+        <div class="row mt-3">
+          <div class="col-md-3 border mb-3 mb-md-0 shadow p-0 rounded" style="height: 350px;">
+            <h3 class="text-center text-white shadow product-list-h3 p-1 rounded " style="background-color: #4169E1;">
+              Product List
+              <div class="input-group p-0">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input type="search" class="form-control "  placeholder="Search product..."id="search-input">
+              </div>
+            </h3>
+            <ul class="list-unstyled product-list ms-4" style="max-height: 250px; overflow-y: scroll;">
+              <!-- list of products -->
+            </ul>
+          </div>
+        
+            <div class="col-md-8 offset-md-1 border shadow product-attributes-box p-0 rounded" >
+              <h3 class="text-center text-white shadow p-1 selected-product-name rounded" style="background-color: #4169E1;">Product Attributes</h3>
+              <div class="product-attributes-form" >
+                <form >
+                  <!-- form elements will be dynamically added here by jQuery -->
+                </form>
+              </div>      
+              <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4 p-3 ">
+                <button type="submit" id="save-button" class="btn btn-primary me-md-3 mb-3 mb-md-0 bi bi-save "> Save</button>
+                <button type="button" id="add-button" class="btn btn-primary bi bi-plus-circle-fill" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop1"> Add Attribute</button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-md">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #4169E1;">
+                        <h5 class="modal-title" id="exampleModalLabel1" style="margin: 0 auto; text-align: center;color: white;">Add Attribute For Product</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: white; filter: invert(1);"></button>
+                      </div>
+                      <div class="modal-body p-4 product-addattributes-form">
+                        <form>
+                          <!-- Attributes Name  input -->
+                          <div class="form-outline mb-4">
+                            <input type="text" id="name" class="form-control"name="name" placeholder="Attributes Name..."autocomplete="off" />
+                          </div>
+                
+                          <!-- Attributes Value input -->
+                          {% comment %} <div class="form-outline mb-4">
+                            <input type="text" id="value" class="form-control" name="value"placeholder="Attributes Value..."autocomplete="off"/>
+                          </div> {% endcomment %}
+                
+                          <!-- Submit button -->
+                          <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4  ">
+                            <button type="submit" id="AddAtt" class="btn btn-primary btn-block">Add</button>
+                          </div>
+
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>          
+                <!-- Modal -->
+                
+              </div>            
+            </div>                   
+        </div>
+    </div>  
+</div>
+
+{% endblock %}
+
